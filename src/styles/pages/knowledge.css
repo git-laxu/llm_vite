@@ -1,0 +1,438 @@
+/* =========================================================
+   knowledge.css
+   修改范围：知识库管理页、样本库管理页
+   按页面—组件组织，后续改布局直接改这里
+   ========================================================= */
+
+/* 知识库管理：整体布局
+   上部两列：导入知识 + 已导入知识
+   下部整行：知识处理与向量化 */
+
+
+.knowledge-layout {
+  display: grid;     /* 表示知识库管理页面用网格布局。*/
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);  /* 表示上半部分分成两列：左边略宽一点。*/
+  gap: 12px;      /* 控制面板之间的距离。*/
+}
+
+.knowledge-import-panel {
+  min-height: 470px;         /* 知识导入面板的最小高度 */
+}
+
+.knowledge-list-panel {
+  min-height: 470px;       /* “已导入知识”面板最小高度 */
+}
+
+.knowledge-process-panel {
+  grid-column: 1 / -1;
+}
+
+/* 导入知识模块 */
+.knowledge-import-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.knowledge-meta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(180px, 0.7fr);
+  gap: 14px;
+  align-items: end;
+}
+
+.domain-create-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.9fr) minmax(120px, 0.8fr) auto;
+  gap: 8px;
+}
+
+.import-editor {
+  display: grid;
+  gap: 12px;
+}
+
+/* 键入JSON结构 模块 */ /* ------------------------------------------------- */ 
+/* .import-editor .textarea {   
+  min-height: 190px;
+} */
+
+/* 键入JSON结构：JSON输入框高度 */
+.import-editor .json-import-textarea {
+  min-height: 210px;
+  font-size: 12px;
+  line-height: 1.65;
+  padding: 6px 14px;
+  font-family: "Microsoft YaHei", "Courier New", monospace;
+  color: #1e293b;
+}
+
+/* 键入JSON结构：placeholder 提示文字 */
+.import-editor .json-import-textarea::placeholder {
+  color: #64748b;
+  opacity: 1;
+  font-size: 13px;
+  line-height: 1.45;
+  font-family: "Microsoft YaHei", "Courier New", monospace;
+}
+
+/* 键入文本信息：知识内容输入框高度 */
+.import-editor .plain-knowledge-textarea {
+  min-height: 109px;
+}
+
+.json-validation {
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.json-validation--success {
+  color: #047857;
+  background: #d1fae5;
+  border: 1px solid #a7f3d0;
+}
+
+.json-validation--error {
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+}
+
+/* 文件导入模块 */ /* ------------------------------------------------- */ 
+.upload-card {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  min-height: 260px;
+  padding: 24px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-xl);
+  background: var(--bg-soft);
+  text-align: center;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.upload-card:hover,
+.upload-card.is-dragging {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+  transform: translateY(-1px);
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.upload-card__icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  color: #fff;
+  background: var(--color-primary);
+  font-size: 28px;
+}
+
+.upload-card p {
+  color: var(--text-secondary);
+}
+
+/* 已导入知识模块 */
+.knowledge-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 45px;    /* ---------------------------------- */
+}
+
+/* 已导入知识面板：缩小内容区底部留白 */
+.knowledge-list-panel .panel__body {
+  padding-bottom: 20px;
+}
+
+/* 已导入知识：空状态提示框 */
+.knowledge-list .empty-state {
+  min-height: 250px;
+  padding: 14px;
+  font-size: 13px;
+  border-radius: 14px;
+}
+
+.knowledge-list {
+  display: grid;
+  gap: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+}
+
+.knowledge-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: #fff;
+}
+
+.knowledge-item h4 {
+  font-size: 15px;
+}
+
+.knowledge-item p {
+  display: -webkit-box;
+  margin-top: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.knowledge-item small {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-muted);
+}
+
+/* 知识处理与向量化模块 */
+.process-config-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.process-actions {
+  margin: 16px 0;
+}
+
+.process-status-grid,
+.processing-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.processing-detail-grid .stat-card strong {
+  font-size: 14px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+/* 样本库管理：整体布局 */
+.sample-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 18px;
+}
+
+.sample-editor {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.sample-list {
+  display: grid;
+  gap: 12px;
+  max-height: 620px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.sample-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-soft);
+}
+
+.sample-item p {
+  margin-top: 8px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.sample-item small {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1180px) {
+  .knowledge-layout,
+  .sample-layout,
+  .knowledge-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-process-panel {
+    grid-column: auto;
+  }
+
+  .process-config-grid,
+  .process-status-grid,
+  .processing-detail-grid,
+  .knowledge-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .process-config-grid,
+  .process-status-grid,
+  .processing-detail-grid,
+  .knowledge-stat-grid,
+  .domain-create-row {
+    grid-template-columns: 1fr;
+  }
+
+  .knowledge-item,
+  .sample-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== 本次新增：知识领域下拉新建 + 领域统计卡片删除按钮 + 处理状态详情 ===== */
+.knowledge-meta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.72fr);
+  gap: 18px;
+  align-items: end;
+}
+
+.domain-stat-card {
+  position: relative;
+  min-height: 92px;
+  padding: 20px 58px 18px 18px;
+}
+
+.domain-delete-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: #0f172a;
+
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.domain-delete-button:hover {
+  background: #e2e8f0;
+  color: #020617;
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+
+.domain-delete-button:active {
+  transform: scale(0.96);
+}
+
+.processing-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.processing-detail-grid .stat-card strong {
+  font-size: 14px;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+@media (max-width: 1180px) {
+  .knowledge-meta-grid,
+  .processing-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .knowledge-meta-grid,
+  .processing-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 处理日志内容区 */
+/* .log-box__content {
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 8px;
+} */
+
+/* Chrome / Edge / Safari 滚动条整体 */
+/* .log-box__content::-webkit-scrollbar {
+  width: 8px;
+} */
+
+/* 滚动条轨道 */
+/* .log-box__content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+} */
+
+/* 滚动条滑块 */
+/* .log-box__content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+} */
+
+/* 鼠标悬停时滑块 */
+/* .log-box__content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+} */
+
+.log-box__content {
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.7) rgba(15, 23, 42, 0.9);
+}
+
+.log-box__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.log-box__content::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 999px;
+}
+
+.log-box__content::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.7);
+  border-radius: 999px;
+}
+
+.log-box__content::-webkit-scrollbar-thumb:hover {
+  background: rgba(203, 213, 225, 0.9);
+}

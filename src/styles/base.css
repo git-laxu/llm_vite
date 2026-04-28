@@ -1,0 +1,195 @@
+/* =========================================================
+   base.css
+   修改范围：全局颜色、字体、按钮、输入框、基础排版
+   ========================================================= */
+
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-soft: #dbeafe;
+
+  --color-success: #059669;
+  --color-danger: #dc2626;
+  --color-warning: #d97706;
+  --color-dark: #0f172a;
+
+  --bg-body: #f4f7fb;
+  --bg-card: #ffffff;
+  --bg-soft: #f8fafc;
+  --bg-muted: #eef2f7;
+
+  --text-main: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --border: #dbe3ef;
+  --border-strong: #cbd5e1;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --shadow-card: 0 18px 45px rgba(15, 23, 42, 0.08);
+  --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.06);
+
+  --page-max-width: 1480px;
+  --header-height: 84px;
+  --page-gap: 12px;               /* ------------------------ */
+  --panel-padding: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 35%),
+    linear-gradient(135deg, #f8fafc 0%, #eef4ff 100%);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+.btn {
+  min-height: 38px;
+  padding: 9px 15px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 650;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary {
+  color: #fff;
+  background: var(--color-primary);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  color: var(--text-main);
+  background: #fff;
+  border-color: var(--border);
+}
+
+.btn-dark {
+  color: #fff;
+  background: var(--color-dark);
+}
+
+.btn-danger {
+  color: #fff;
+  background: var(--color-danger);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.align-right {
+  justify-content: flex-end;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+}
+
+.field__label {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text-secondary);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input {
+  height: 40px;
+  padding: 0 12px;
+}
+
+.textarea {
+  min-height: 116px;
+  padding: 12px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  min-height: 128px;
+  padding: 20px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .span-2 {
+    grid-column: span 1;
+  }
+}

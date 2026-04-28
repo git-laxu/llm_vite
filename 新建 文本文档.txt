@@ -1,0 +1,3 @@
+curl -X POST http://127.0.0.1:8001/api/strategy/generate ^
+  -H "Content-Type: application/json" ^
+  -d "{\"form\":{\"target\":\"提升热舒适并兼顾节能\",\"constraints\":\"优先局部调节，避免能耗过高\"},\"semantic_context\":\"室内空气温度28℃，相对湿度60%，人员TSV为1.2，当前偏热。\",\"knowledge_items\":[{\"id\":\"k1\",\"title\":\"热舒适原则\",\"domain\":\"热环境调节\",\"type\":\"标准\",\"source\":\"测试知识\",\"content\":\"当人员处于偏热状态时，可优先提高局部风速、降低辐射得热并控制送风温度。\"}],\"llm_config\":{\"provider\":\"aliyun\",\"base_url\":\"https://dashscope.aliyuncs.com/compatible-mode/v1\",\"api_key\":\"sk-2c46bf9c286d47f9a12b8552c34cba3f\",\"model_id\":\"qwen-plus\",\"temperature\":0.7,\"top_p\":0.9,\"max_tokens\":1200},\"knowledge_top_k\":3}"

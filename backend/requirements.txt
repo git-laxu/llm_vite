@@ -1,0 +1,2 @@
+pip install 
+openai chromadb python-dotenv

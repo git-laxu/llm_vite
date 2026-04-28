@@ -1,0 +1,27 @@
+
+
+
+
+{
+    "task":"热环境调节策略生成",
+    "constraints":"优先局部调节，避免能耗过高",
+    "knowledge":["当人员处于偏热状态时，可优先提高局部风速、降低辐射得热并控制送风温度"],
+    "summary":"针对偏热状态（TSV=1.2），在28℃/60%RH环境下，通过提升局部风速、降低辐射得热和微调送风温度实现舒适性提升与节能协同。",
+    "actions":["将桌面风扇风速调至中高档（风速提升至0.5–0.8 m/s）","关闭南向遮阳帘，减少太阳辐射得热","将新风机组送风温度由26℃下调至24℃，仅限人员活动区送风"],
+    "json":{"strategy_type":"局部优先-混合调控",
+            "control_priority":["局部风速调节","辐射得热控制","送风温度微调"],
+            "device_actions":[
+                    {"device":"桌面风扇","action":"开启并设为中高档位","target_value":"0.5–0.8 m/s"},
+                    {"device":"电动遮阳帘","action":"完全闭合南向窗体","target_value":"遮阳率≥90%"},
+                    {"device":"新风机组","action":"降低送风温度设定值","target_value":24}
+                ],
+            "risk_check":["送风温度不低于24℃以防过度制冷及冷凝风险","遮阳闭合后需确保自然采光不严重不足","风扇风速避免直吹头部引发不适"],
+            "data_used":{"indoor_air_temperature":28,"relative_humidity":60,"tsv":1.2,"target_comfort_energy_balance":"提升热舒适并兼顾节能"}
+            },
+            "rawModelText":"{\n  \"task\": \"热环境调节策略生成\",\n  \"constraints\": \"优先局部调节，避免能耗过高\",\n  \"knowledge\": [\"当人员处于偏热状态时，可优先提高局部风速、降低辐射得热并控制送风温度\"],\n  \"summary\": \"针对偏热状态（TSV=1.2），在28℃/60%RH环境下，通过提升局部风速、降低辐射得热和微调送风温度实现舒适性提升与节能协同。\",\n  \"actions\": [\"将桌面风扇风速调至中高档（风速提升至0.5–0.8 m/s）\", \"关闭南向遮阳帘，减少太阳辐射得热\", \"将新风机组送风温度由26℃下调至24℃，仅限人员活动区送风\"],\n  \"json\": {\n    \"strategy_type\": \"局部优先-混合调控\",\n    \"control_priority\": [\"局部风速调节\", \"辐射得热控制\", \"送风温度微调\"],\n    \"device_actions\": [\n      {\"device\": \"桌面风扇\", \"action\": \"开启并设为中高档位\", \"target_value\": \"0.5–0.8 m/s\"},\n      {\"device\": \"电动遮阳帘\", \"action\": \"完全闭合南向窗体\", \"target_value\": \"遮阳率≥90%\"},\n      {\"device\": \"新风机组\", \"action\": \"降低送风温度设定值\", \"target_value\": 24}\n    ],\n    \"risk_check\": [\"送风温度不低于24℃以防过度制冷及冷凝风险\", \"遮阳闭合后需确保自然采光不严重不足\", \"风扇风速避免直吹头部引发不适\"],\n    \"data_used\": {\n      \"indoor_air_temperature\": 28,\n      \"relative_humidity\": 60,\n      \"tsv\": 1.2,\n      \"target_comfort_energy_balance\": \"提升热舒适并兼顾节能\"\n    }\n  }\n}",
+            "modelInfo":{
+                "provider":"aliyun",
+                "baseUrl":"https://dashscope.aliyuncs.com/compatible-mode/v1","modelId":"qwen-plus"
+                },
+                "retrievedKnowledge":[{"id":"k1","title":"热舒适原则","domain":"热环境调节","type":"标准","source":"测试知识","content":"当人员处于偏热状态时，可优先提高局部风速、降低辐射得热并控制送风温度。"}]
+}

@@ -1,0 +1,513 @@
+/* =========================================================
+   strategy.css 修改范围：决策策略生成页面
+   ========================================================= */
+
+/* 项目相关的设计 */
+/* 控制新的标题说明面板 */
+.strategy-hero-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  /* padding: 26px 28px; */
+  padding: 20px 24px;
+  /* margin-bottom: 1px;       控制标题说明面板下面额外留出的距离 */
+  border: 1px solid var(--border);
+  /* border-radius: 26px; */
+  border-radius: var(--radius-xl);
+  /* background: rgba(255, 255, 255, 0.78); */
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: var(--shadow-soft);
+}
+
+.strategy-page {
+  gap: 12px;
+}
+
+.strategy-hero-text {
+  min-width: 0;
+}
+
+/* .strategy-hero-text h2 {
+  margin: 0 0 10px;
+  color: var(--text-main);
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+} */
+.strategy-hero-text h2 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* .strategy-hero-text p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
+} */
+.strategy-hero-text p {
+  margin-top: 8px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.strategy-hero-project {
+  flex: 0 0 auto;
+}
+
+/* 保留并优化项目下拉样式 */
+/* .project-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: -6px;
+  margin-bottom: 2px;
+} */
+
+.project-selector {
+  position: relative;
+  z-index: 20;
+}
+
+.project-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.project-button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+  background: var(--color-primary-soft);
+  transform: translateY(-1px);
+}
+
+.project-button__arrow {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+.project-button__arrow.is-open {
+  transform: rotate(180deg);
+}
+
+.project-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 80;
+  width: 280px;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 18px 55px rgba(15, 23, 42, 0.16);
+  backdrop-filter: blur(18px);
+}
+
+.project-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 26px;
+  width: 14px;
+  height: 14px;
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.98);
+  transform: rotate(45deg);
+}
+
+.project-dropdown__item {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  padding: 12px 13px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  text-align: left;
+  color: var(--text-main);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.project-dropdown__item:hover {
+  background: var(--bg-soft);
+  transform: translateY(-1px);
+}
+
+.project-dropdown__item.is-active {
+  color: var(--color-primary-dark);
+  background: var(--color-primary-soft);
+}
+
+.project-dropdown__item span {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.project-dropdown__item small {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.project-dropdown__item--create {
+  display: block;
+  padding: 12px 13px;
+  border-top: 1px solid var(--border);
+  color: var(--color-primary-dark);
+  font-weight: 800;
+}
+
+.project-dropdown__empty {
+  position: relative;
+  z-index: 1;
+  padding: 12px 13px;
+  border-radius: 14px;
+  color: var(--text-secondary);
+  background: var(--bg-soft);
+  font-size: 13px;
+}
+
+.project-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+
+/*  */
+.strategy-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.52fr);  /* -------------------------------------------------*/
+  gap: 12px;                          /* -------------------------------------------------*/
+  align-items: start;
+}
+
+.strategy-layout .panel:nth-child(3),
+.strategy-result-panel {
+  grid-column: 1 / -1;
+}
+
+.strategy-input-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.strategy-input-group {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-soft);
+}
+
+.strategy-input-group h4,
+.group-title-row h4 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.group-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.strategy-input-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));   /* --------------------------------- */
+  gap: 14px;
+}
+
+.person-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.person-card {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-main);
+}
+
+.person-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.person-card-header strong {
+  color: var(--primary);
+}
+
+.person-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.comfort-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.comfort-row {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 96px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-main);
+}
+
+.comfort-row span {
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.comfort-row strong {
+  font-size: 13px;
+  text-align: right;
+  color: var(--text-main);
+}
+
+.comfort-row input[type='range'] {
+  width: 100%;
+}
+
+.comfort-extra-grid {
+  margin-top: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.adjust-aim-constraint {
+  margin-top: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.check-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 14px;
+  color: var(--text-secondary);
+  font-weight: 650;
+}
+
+.check-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* .semantic-textarea {
+  min-height: 420px;
+} */
+
+.semantic-textarea {
+  height: 200px;
+  min-height: 200px;               /* ---------------------------------*/
+  max-height: 420px;
+  /* max-width: 220px; */
+  resize: none;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.model-config-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.model-config-row-top {
+  display: grid;
+  /* grid-template-columns: 1.4fr 1.1fr repeat(3, 0.7fr); */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.model-config-row-bottom {
+  display: grid;
+  /* grid-template-columns: 1.4fr 1.1fr repeat(3, 0.7fr); */
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.generate-button {
+  margin-top: 16px;
+  min-width: 160px;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.result-card,
+.json-block {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-soft);
+}
+
+.result-card span,
+.json-block span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.result-card strong {
+  line-height: 1.55;
+}
+
+.result-card p {
+  line-height: 1.7;
+  color: var(--text-main);
+}
+
+.json-block pre {
+  max-height: 360px;
+  overflow: auto;
+  margin: 0;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+@media (max-width: 1180px) {
+  .strategy-layout,
+  .strategy-input-grid,
+  /* .model-config-grid, */
+  .result-grid,
+  .person-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .model-config-row-top,
+  .model-config-row-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .strategy-layout .panel:nth-child(3),
+  .strategy-result-panel {
+    grid-column: auto;
+  }
+
+  .comfort-row {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .comfort-row strong {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  /* 修改响应式样式，避免小屏幕挤压 */
+  .strategy-hero-panel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .strategy-hero-project {
+    width: 100%;
+  }
+
+  .project-button {
+    width: 100%;
+  }
+
+  .project-dropdown {
+    left: 0;
+    right: auto;
+    width: min(100%, 320px);
+  }
+}
+
+/* 场景信息输入面板：固定高度，面板内部滚动 */
+.strategy-input-panel {
+  height: calc(100vh - 180px);
+  max-height: calc(100vh - 610px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.strategy-input-panel .panel__header {
+  flex: 0 0 auto;
+}
+
+.strategy-input-panel .panel__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 24px;
+}
+
+.semantic-context-panel {
+  height: 560px;
+}
+
+.semantic-context-panel .panel__body {
+  height: calc(100% - 72px);
+}
+
+.semantic-context-panel textarea {
+  height: 100%;
+}
+
+.semantic-context-panel .panel__body {
+  width: 100%;
+}
+
+.semantic-context-panel textarea {
+  width: 100%;
+  box-sizing: border-box;
+}

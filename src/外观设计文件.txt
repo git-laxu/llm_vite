@@ -1,0 +1,11 @@
+src/pages/KnowledgePage.jsx
+决定页面里有哪些面板、面板顺序、面板内部有哪些组件。
+
+src/styles/pages/knowledge.css
+决定知识库管理页面中各面板怎么排列、每个面板内部怎么排布、知识条目卡片怎么显示、统计卡片怎么显示。
+
+src/styles/components.css
+决定通用面板 Panel 的基础外观，比如边框、圆角、阴影、标题区、内容区 padding。
+
+src/styles/base.css
+决定全局变量，比如颜色、圆角、间距、按钮尺寸、输入框尺寸、textarea 高度。
